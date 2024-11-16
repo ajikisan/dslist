@@ -3,6 +3,7 @@ package com.devsuperior.dslist.services;
 
 import com.devsuperior.dslist.dto.GameDTO;
 import com.devsuperior.dslist.dto.GameMinDTO;
+import com.devsuperior.dslist.projections.GameMinProjection;
 import com.devsuperior.dslist.repositories.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,7 @@ public class GameService {
         // Retorna o objeto GameDTO.
     }
 
+    @Transactional(readOnly = true)
     public List<GameMinDTO> findAll() {
         // Método público que retorna uma lista de objetos GameMinDTO.
         // Este método é usado para buscar todos os jogos do repositório e convertê-los para o formato DTO.
@@ -48,5 +50,12 @@ public class GameService {
         return dto;
         // Retorna a lista de objetos GameMinDTO.
     }
+
+    @Transactional(readOnly = true)
+    public List<GameMinDTO> findByList(Long listId) {
+        List<GameMinProjection> result = gameRepository.searchByList(listId);
+        return result.stream().map(x -> new GameMinDTO(x)).toList();
+    }
+
 }
 
