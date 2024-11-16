@@ -11,17 +11,26 @@ import jakarta.persistence.Table;
 public class Belonging {
 
     @EmbeddedId
+    // Anotação que indica que o campo 'id' é uma chave primária embutida, que contém um objeto do tipo 'BelongingPK'.
+    // Esta chave composta é usada para representar a chave primária de uma entidade que consiste em mais de um campo.
     private BelongingPK id = new BelongingPK();
+    // Declaração do campo 'id' que é uma instância da classe 'BelongingPK'.
+    // Este campo será usado como a chave primária da entidade.
 
     private Integer position;
+    // Declaração do campo 'position' que armazena a posição dentro de um ranking ou lista.
 
     public void setGame(Game game) {
         id.setGame(game);
     }
+    // Método público que define o campo 'game' dentro da chave primária embutida 'id'
+    // usando o método 'setGame' da classe 'BelongingPK'.
 
     public Game getGame() {
         return id.getGame();
     }
+    // Método público que retorna o campo 'game' da chave primária embutida 'id' usando o
+    // método 'getGame' da classe 'BelongingPK'.
 
     public void setList(GameList list) {
         id.setList(list);

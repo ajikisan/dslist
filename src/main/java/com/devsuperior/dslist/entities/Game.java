@@ -136,12 +136,13 @@ public class Game {
     }
 
     @Override // Anotação que indica que este método substitui o método 'equals' da classe pai (Object).
-    public boolean equals(Object obj) { // Verifica se a referência do objeto atual é igual à do objeto passado
-        // como argumento. Se forem iguais, retorna verdadeiro.
+    public boolean equals(Object obj) {
+        // Verifica se a referência do objeto atual é igual à do objeto passado como argumento.
+        // Se forem iguais, retorna verdadeiro.
         if (this == obj)
             return true;
 
-         // Verifica se o objeto passado como argumento é nulo. Se for, retorna false.
+        // Verifica se o objeto passado como argumento é nulo. Se for, retorna false.
         if (obj == null)
             return false;
 
