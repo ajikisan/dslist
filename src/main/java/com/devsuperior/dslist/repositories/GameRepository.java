@@ -24,8 +24,9 @@ public interface GameRepository extends JpaRepository<Game,Long> {
     // Filtra os resultados da consulta para incluir apenas aqueles onde 'list_id' em 'tb_belonging'
     // corresponde ao valor do parâmetro 'listId'.
     // Ordena os resultados da consulta pelo campo 'position' em 'tb_belonging'.
-	// Quando no executado o postegres não leu as aspas tb_game.game_year AS `year`
-	// ocasionado  "error": "Internal Server Error" http://localhost:8080/lists/1/games,
+	// Quando no executado o Postman com o perfil de dev não leu as aspas tb_game.game_year AS `year`
+	// ocasionado  "error": "Internal Server Error" http://localhost:8080/lists/1/games, por este motivo foi
+	// trocado o apelido da coluna para game Year
 
 
     @Query(nativeQuery = true, value = """
