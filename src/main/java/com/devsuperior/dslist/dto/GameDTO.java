@@ -21,7 +21,13 @@ public class GameDTO {
     }
 
     public GameDTO(Game entity){
+        // Construtor da classe GameDTO que recebe um objeto do tipo Game como parâmetro.
         BeanUtils.copyProperties(entity,this);
+        // Usa o método copyProperties da classe BeanUtils para copiar todas as propriedades do
+        // objeto Game recebido para o objeto atual (this) de GameDTO.
+        // Isso facilita a transferência de dados do objeto de entidade para o objeto DTO (Data Transfer Object)
+        // sem a necessidade de copiar manualmente cada propriedade.
+
 
     }
 

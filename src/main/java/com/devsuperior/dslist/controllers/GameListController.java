@@ -2,13 +2,11 @@ package com.devsuperior.dslist.controllers;
 
 import com.devsuperior.dslist.dto.GameListDTO;
 import com.devsuperior.dslist.dto.GameMinDTO;
+import com.devsuperior.dslist.dto.ReplacementDTO;
 import com.devsuperior.dslist.services.GameListService;
 import com.devsuperior.dslist.services.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -29,6 +27,7 @@ public class GameListController {
     private GameService gameService;
 
     @GetMapping(value = "/{id}")
+    // Anotação que mapeia requisições HTTP GET para o método findById().
     public GameListDTO findById(@PathVariable Long id) {
         GameListDTO result = gameListService.findById(id);
         return result;
@@ -46,6 +45,20 @@ public class GameListController {
         List<GameMinDTO> result = gameService.findByList(listId);
         return result;
     }
+
+    @PostMapping(value = "/{listId}/replacement")
+    // Anotação que mapeia requisições HTTP POST para o método move().
+    // O valor "/{listId}/replacement" indica que o método aceitará um parâmetro de caminho na URL,
+    // que será o identificador da lista.
+    public void move(@PathVariable Long listId, @RequestBody ReplacementDTO body) {
+      // Método público que manipula a requisição para mover um item dentro de uma lista.
+      // A anotação @PathVariable indica que o parâmetro 'listId' será extraído do caminho da URL.
+      // A anotação @RequestBody indica que o corpo da requisição será desserializado para um objeto ReplacementDTO.
+        gameListService.move(listId, body.getSourceIndex(), body.getDestinationIndex());
+        // Chama o método move do serviço gameListService, passando o 'listId', 'sourceIndex' e
+        // 'destinationIndex' extraídos do objeto ReplacementDTO.
+    }
+
 }
 
 
